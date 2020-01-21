@@ -72,6 +72,17 @@ namespace OCM.API.Tests
 
             conn = new ConnectionInfo
             {
+                Amps = 63, 
+                PowerKW = 43,
+                CurrentTypeID = (int)StandardCurrentTypes.ThreePhaseAC,
+                Voltage = 400
+            };
+
+            level = Common.Model.Extensions.ConnectionInfo.ComputeChargingLevel(conn);
+            Assert.True(level == 3, "Should be level 3");
+
+            conn = new ConnectionInfo
+            {
                 PowerKW = 50,
                 CurrentTypeID = (int)StandardCurrentTypes.DC,
                 Voltage = 400
